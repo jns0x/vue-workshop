@@ -2,29 +2,22 @@
  <div id="app">
     <h2>{{ heading }}</h2>
     <p>Products in list: {{ products.length }}</p>
-    <products :products="products"></products>
+    <Products :products="products"></Products>
+    <submit-product @add-new-product="onAddProduct"></submit-product>
     <button v-on:click="removeLast()">Remove last item</button>
-    <form @submit.prevent="addNew()">
-      <input name="product"
-        v-model="newItems.name"
-        v-validate="'required|min:3'"
-         placeholder="add product"
-         class="form-input">
-      <button>Add new product</button>
-      <div v-show="errors.has('product')">
-        {{ errors.first('product') }}
-        </div>
-    </form>
+
   </div>
 </template>
 
 <script>
 import Products from "./components/Products";
+import SubmitProduct from "./components/SubmitProduct";
 
 export default {
   name: "app",
   components: {
-    Products
+    Products,
+    SubmitProduct
   },
   data() {
     return {
@@ -53,21 +46,8 @@ export default {
     removeLast() {
       this.products.pop();
     },
-    addNew() {
-      this.$validator.validateAll().then(result => {
-        if (!result) {
-          return;
-        }
-        this.products.push({
-          id: this.getNewId(),
-          ...this.newItems
-        });
-        this.newItems.name = "";
-        this.$validator.reset();
-      });
-    },
-    getNewId() {
-      return this.products.length === 0 ? 0 : this.products.length + 1;
+    onAddProduct(product) {
+      this.products.push(product);
     }
   }
 };

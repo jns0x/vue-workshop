@@ -2,15 +2,19 @@
 <div>
   <p v-if="!products.length">No products!</p>
   <ul>
-    <li v-for="p in products" :key="p.id">{{ p.name }}</li>
+    <ProductListItem :products="products"></ProductListItem>
+    <!-- <li v-for="p in products" :key="p.id">{{ p.name }}</li> -->
   </ul>
 </div>
 </template>
 
 
 <script>
+import ProductListItem from "./ProductListItem";
 export default {
-  name: "Products",
+  components: {
+    ProductListItem
+  },
   // The case is, we have to define props (inputs)
   props: {
     // Here we also added some basic props validation
