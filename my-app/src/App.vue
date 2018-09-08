@@ -53,8 +53,6 @@ export default {
     },
     orderByName() {
       const payload = this.sharedState.products;
-      console.log(payload);
-
       function compare(a, b) {
         if (a.joke[1] < b.joke[1]) return -1;
         if (a.joke[1] > b.joke[1]) return 1;

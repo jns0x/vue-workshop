@@ -20,6 +20,9 @@ export default new Vuex.Store({
     },
     orderByName(state, payload) {
       state.products = payload.products;
+    },
+    removeItem(state, payload) {
+      state.products.value = payload.products;
     }
   },
   actions: {
@@ -52,6 +55,15 @@ export default new Vuex.Store({
       store.commit({
         type: "orderByName",
         products: payload
+      });
+    },
+    removeItem(store, payload) {
+      const updatedByPayload = this.state.products.value.filter(
+        el => el.id !== payload
+      );
+      store.commit({
+        type: "removeItem",
+        products: updatedByPayload
       });
     }
   },
