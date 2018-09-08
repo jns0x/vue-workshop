@@ -1,0 +1,14 @@
+{
+  "product1": {
+    "id": 0,
+    "name": "Coffee"
+  },
+  "product2": {
+    "id": 1,
+    "name": "Pizza"
+  },
+  "product3": {
+    "id": 2,
+    "name": "Cebula"
+  }
+}

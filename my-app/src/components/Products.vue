@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p v-if="!products.length">No products!</p>
+  <p v-if="!products">No products!</p>
   <ul>
     <ProductListItem v-for="p in products" :key="p.id" :products="p"></ProductListItem>
     <!-- <li v-for="p in products" :key="p.id">{{ p.name }}</li> -->

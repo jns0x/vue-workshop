@@ -1,17 +1,22 @@
 <template>
  <div id="app">
     <h2>{{ heading }}</h2>
-    <p>Products in list: {{ products.length }}</p>
-    <Products :products="products"></Products>
-    <submit-product @add-new-product="onAddProduct"></submit-product>
-    <button v-on:click="removeLast()">Remove last item</button>
+    <div v-if="sharedState.products.value">
+      <!-- <p>{{ sharedState.products.value}}</p> -->
+      <!-- <p>Products in list: {{ sharedState.products.value.length }}</p> -->
+      <Products :products="sharedState.products.value"></Products>
 
+      <submit-product @add-new-product="onAddProduct"></submit-product>
+      <button v-on:click="removeLast()">Remove last item</button>
+      <button v-on:click="orderStuff()">Order list by name</button>
+    </div>
   </div>
 </template>
 
 <script>
 import Products from "./components/Products";
 import SubmitProduct from "./components/SubmitProduct";
+import store from "./store";
 
 export default {
   name: "app",
@@ -19,35 +24,26 @@ export default {
     Products,
     SubmitProduct
   },
+  created() {
+    store.fetchProducts();
+  },
   data() {
     return {
-      products: [
-        {
-          id: 0,
-          name: "Coffee"
-        },
-        {
-          id: 1,
-          name: "Pizza"
-        },
-        {
-          id: 2,
-          name: "Cebula"
-        }
-      ],
-      newItems: {
-        name: ""
-      },
+      sharedState: store.state,
       heading: "Test"
     };
   },
+
   methods: {
     //3/ 4. The important thing is to use function with execution-based context
     removeLast() {
-      this.products.pop();
+      this.sharedState.pop();
     },
     onAddProduct(product) {
-      this.products.push(product);
+      store.addProduct(product);
+    },
+    orderStuff(products) {
+      // console.log(this.sharedState);
     }
   }
 };

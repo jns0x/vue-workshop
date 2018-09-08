@@ -2,10 +2,10 @@
   <div>
     <form @submit.prevent="addNew()">
       <input name="product"
-        v-model="newItems.name"
+        v-model="newItems.joke"
         v-validate="'required|min:3'"
          placeholder="add product"
-         class="form-input">
+         class="form-input"/>
       <button>Add new product</button>
       <div v-show="errors.has('product')">
         {{ errors.first('product') }}
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       newItems: {
-        name: ""
+        joke: ""
       }
     };
   },
@@ -35,8 +35,7 @@ export default {
           id: uuid(),
           ...this.newItems
         });
-        this.newItems.name = "";
-
+        this.newItems.joke = "";
         this.$validator.reset();
       });
     }
