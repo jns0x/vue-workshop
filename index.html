@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+  <!-- <script src="main.js"></script> -->
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{ heading }}</h2>
+    <p>Products in list: {{ products.length }}</p>
+    <li v-for="p in products">{{ p.name }}</li>
+    <button v-on:click="removeLast()">Remove last item</button>
+    <form @submit.prevent="">
+      <input v-model="newItems" placeholder="add product">
+      <button v-on:click="addNew()">Add new product</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        newItems: [],
+        heading: 'Test',
+        products: [{
+          id: 0,
+          name: 'Coffee'
+        }, {
+          id: 1,
+          name: 'Pizza'
+        }, {
+          id: 2,
+          name: 'Cebula'
+        }]
+      },
+
+      methods: {
+        //3/ 4. The important thing is to use function with execution-based context
+        removeLast() {
+          this.products.pop();
+        },
+        addNew() {
+          let i = 0
+          i++;
+          this.products.push({ id: i, name: this.newItems })
+          console.log(this.newitem);
+        },
+        getNewId() {
+          return this.products.length === 0
+            ? 0
+            : this.taskList[this.taskList.length].id + 1;
+        }
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>
