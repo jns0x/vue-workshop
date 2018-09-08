@@ -39,7 +39,6 @@ export default {
       });
     },
     refreshData() {
-      console.log("dupa");
       this.$store.dispatch("getProducts");
     }
   }
