@@ -2,14 +2,14 @@
  <div id="app">
     <h2>{{ heading }}</h2>
     <p>Products in list: {{ products.length }}</p>
-    <p v-if="!products.length">No products!</p>
-    <li v-for="p in products" :key="p.id">{{ p.name }}</li>
+    <products :products="products"></products>
     <button v-on:click="removeLast()">Remove last item</button>
     <form @submit.prevent="addNew()">
       <input name="product"
         v-model="newItems.name"
         v-validate="'required|min:3'"
-         placeholder="add product">
+         placeholder="add product"
+         class="form-input">
       <button>Add new product</button>
       <div v-show="errors.has('product')">
         {{ errors.first('product') }}
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Products from "./components/Products";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    Products
   },
   data() {
     return {
@@ -81,5 +81,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.form-input {
+  outline: none;
+  padding: 5px;
 }
 </style>
