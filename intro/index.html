@@ -14,6 +14,7 @@
   <div id="app">
     <h2>{{ heading }}</h2>
     <p>Products in list: {{ products.length }}</p>
+    <p v-if="!products.length">No products!</p>
     <li v-for="p in products">{{ p.name }}</li>
     <button v-on:click="removeLast()">Remove last item</button>
     <form @submit.prevent="">
@@ -47,9 +48,9 @@
           this.products.pop();
         },
         addNew() {
-          let i = 0;
-          i++;
-          this.products.push({ id: this.getNewId(), name: this.newItems })
+          if (name !== undefined) {
+            this.products.push({ id: this.getNewId(), name: this.newItems })
+          }
         },
         getNewId() {
           return this.products.length === 0
