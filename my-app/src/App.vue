@@ -1,14 +1,12 @@
 <template>
- <div id="app">
+  <div id="app">
     <h2>{{ heading }}</h2>
     <div v-if="sharedState.products.value">
-      <!-- <p>{{ sharedState.products.value}}</p> -->
-      <!-- <p>Products in list: {{ sharedState.products.value.length }}</p> -->
-      <Products :products="sharedState.products.value"></Products>
 
       <submit-product @add-new-product="onAddProduct"></submit-product>
       <button v-on:click="onRemoveLast()">Remove last item</button>
-      <button v-on:click="orderStuff()">Order list by name</button>
+      <button v-on:click="orderByName()">Order list by name</button>
+      <Products :products="sharedState.products.value"></Products>
     </div>
   </div>
 </template>
@@ -35,7 +33,7 @@ export default {
   data() {
     return {
       sharedState: store.state,
-      heading: "Test"
+      heading: "Some Huck Norris jokes"
     };
   },
 
@@ -47,11 +45,25 @@ export default {
     onAddProduct(product) {
       this.$store.dispatch("addProduct", product);
     },
-    onRemoveLast(product) {
-      store.removeProduct();
+    onRemoveLast() {
+      // const payload = this.sharedState.products;
+      // payload.value.pop();
+      // this.$store.dispatch("removeLast", payload);
+      this.$store.dispatch("removeLast");
     },
-    orderStuff(products) {
-      // console.log(this.sharedState);
+    orderByName() {
+      const payload = this.sharedState.products;
+      console.log(payload);
+
+      function compare(a, b) {
+        if (a.joke[1] < b.joke[1]) return -1;
+        if (a.joke[1] > b.joke[1]) return 1;
+        return 0;
+      }
+
+      payload.value.sort(compare);
+      console.log(payload);
+      this.$store.dispatch("orderByName", payload);
     }
   }
 };

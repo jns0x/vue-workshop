@@ -14,6 +14,12 @@ export default new Vuex.Store({
     },
     setProducts(state, payload) {
       state.products = payload.products;
+    },
+    removeLast(state) {
+      state.products.value.pop();
+    },
+    orderByName(state, payload) {
+      state.products = payload.products;
     }
   },
   actions: {
@@ -29,6 +35,22 @@ export default new Vuex.Store({
         .then(res => res.data);
       commit({
         type: "setProducts",
+        products: payload
+      });
+    },
+    removeLast(store) {
+      // console.log(store);
+      // console.log(payload);
+      // console.log(store);
+      // const stuff = this.state.products.value.pop();
+      store.commit({
+        type: "removeLast"
+        // products: payload
+      });
+    },
+    orderByName(store, payload) {
+      store.commit({
+        type: "orderByName",
         products: payload
       });
     }

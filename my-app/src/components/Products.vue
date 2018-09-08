@@ -1,10 +1,10 @@
 <template>
-<div>
-  <p v-if="!products">No products!</p>
-  <ul>
-    <ProductListItem v-for="p in products" :key="p.id" :products="p"></ProductListItem>
-  </ul>
-</div>
+  <div>
+    <p v-if="!products">No products!</p>
+    <ul>
+      <ProductListItem v-for="p in products" :key="p.id" :products="p"></ProductListItem>
+    </ul>
+  </div>
 </template>
 
 

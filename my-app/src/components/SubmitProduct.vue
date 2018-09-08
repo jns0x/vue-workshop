@@ -1,15 +1,14 @@
 <template>
   <div>
     <form @submit.prevent="addNew()">
-      <input name="product"
-        v-model="newItems.joke"
-        v-validate="'required|min:3'"
-         placeholder="add product"
-         class="form-input"/>
-      <button>Add new product</button>
       <div v-show="errors.has('product')">
         {{ errors.first('product') }}
-        </div>
+      </div>
+      <div class="styled--input">
+        <input name="product" v-model="newItems.joke" v-validate="'required|min:3'" placeholder="add product" class="form-input" />
+        <button>Add new joke</button>
+      </div>
+
     </form>
   </div>
 </template>
@@ -43,4 +42,19 @@ export default {
 </script>
 
 <style scoped>
+.styled--input {
+  display: flex;
+  justify-content: center;
+}
+.styled--input input {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid black;
+}
+.styled--input button {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid black;
+  margin-left: -1px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <li>{{ products.joke }}</li>
+    <li class="list--item">{{ products.joke }}</li>
   </div>
 </template>
 <script>
@@ -13,3 +13,9 @@ export default {
   }
 };
 </script>
+<style>
+.list--item {
+  text-align: left;
+}
+</style>
+
