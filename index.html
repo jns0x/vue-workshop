@@ -47,15 +47,14 @@
           this.products.pop();
         },
         addNew() {
-          let i = 0
+          let i = 0;
           i++;
-          this.products.push({ id: i, name: this.newItems })
-          console.log(this.newitem);
+          this.products.push({ id: this.getNewId(), name: this.newItems })
         },
         getNewId() {
           return this.products.length === 0
             ? 0
-            : this.taskList[this.taskList.length].id + 1;
+            : this.products[this.products.length] + 1;
         }
       }
     })
