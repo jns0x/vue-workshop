@@ -25,7 +25,6 @@ export default {
     };
   },
   methods: {
-    //3/ 4. The important thing is to use function with execution-based context
     addNew() {
       this.$validator.validateAll().then(result => {
         if (!result) {
@@ -41,10 +40,6 @@ export default {
     }
   }
 };
-
-// getNewId() {
-//   return this.products.length === 0 ? 0 : this.products.length + 1;
-// }
 </script>
 
 <style scoped>

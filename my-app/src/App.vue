@@ -7,7 +7,7 @@
       <Products :products="sharedState.products.value"></Products>
 
       <submit-product @add-new-product="onAddProduct"></submit-product>
-      <button v-on:click="removeLast()">Remove last item</button>
+      <button v-on:click="onRemoveLast()">Remove last item</button>
       <button v-on:click="orderStuff()">Order list by name</button>
     </div>
   </div>
@@ -25,7 +25,12 @@ export default {
     SubmitProduct
   },
   created() {
-    store.fetchProducts();
+    this.$store.dispatch("getProducts");
+  },
+  computed: {
+    products() {
+      return this.$store.state.products;
+    }
   },
   data() {
     return {
@@ -40,7 +45,10 @@ export default {
       this.sharedState.pop();
     },
     onAddProduct(product) {
-      store.addProduct(product);
+      this.$store.dispatch("addProduct", product);
+    },
+    onRemoveLast(product) {
+      store.removeProduct();
     },
     orderStuff(products) {
       // console.log(this.sharedState);

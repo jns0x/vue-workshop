@@ -1,20 +1,37 @@
+import Vue from "vue";
+import Vuex from "vuex";
+import createLogger from "vuex/dist/logger";
 import axios from "axios";
 
-const store = {
-  //3/ It holds a state itself
+Vue.use(Vuex);
+export default new Vuex.Store({
   state: {
     products: []
   },
-  //6/ And methods to update
-  async fetchProducts() {
-    this.state.products = await axios
-      .get("http://api.icndb.com/jokes/random/10")
-      // .then(res => console.log(res.data))
-      .then(res => res.data);
+  mutations: {
+    addProduct(state, payload) {
+      state.products.value.push(payload.product);
+    },
+    setProducts(state, payload) {
+      state.products = payload.products;
+    }
   },
-  addProduct(product) {
-    this.state.products.value.push(product);
-  }
-};
-
-export default store;
+  actions: {
+    addProduct(store, payload) {
+      store.commit({
+        type: "addProduct",
+        product: payload
+      });
+    },
+    async getProducts({ commit }) {
+      const payload = await axios
+        .get("http://api.icndb.com/jokes/random/10")
+        .then(res => res.data);
+      commit({
+        type: "setProducts",
+        products: payload
+      });
+    }
+  },
+  plugins: [createLogger()]
+});

@@ -3,7 +3,6 @@
   <p v-if="!products">No products!</p>
   <ul>
     <ProductListItem v-for="p in products" :key="p.id" :products="p"></ProductListItem>
-    <!-- <li v-for="p in products" :key="p.id">{{ p.name }}</li> -->
   </ul>
 </div>
 </template>
