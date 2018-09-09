@@ -1,17 +1,17 @@
 <template>
   <div class="from--wrapper">
     <form @submit.prevent="addNew()">
-      <div v-show="errors.has('product')">
-        {{ errors.first('product') }}
-      </div>
       <div class="styled--input">
-        <input name="product" v-model="newItems.joke" v-validate="'required|min:3'" placeholder="add product" class="form-input" />
+        <input name="add-joke" v-model="newItems.joke" v-validate="'required|min:3'" placeholder="add new joke" class="form-input" />
         <button class="btn btn--add--joke">Add new joke</button>
-
       </div>
     </form>
     <button v-on:click="refreshData()" class="btn">Get more jokes</button>
+    <div class="error--message" v-show="errors.has('add-joke')">
+      {{ errors.first('add-joke') }}
+    </div>
   </div>
+
 </template>
 <script>
 import uuid from "uuid/v4";
@@ -68,5 +68,10 @@ export default {
 .from--wrapper {
   display: flex;
   justify-content: center;
+}
+.error--message {
+  position: absolute;
+  margin-top: -24px;
+  color: red;
 }
 </style>

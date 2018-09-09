@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p v-if="!products">No products!</p>
-    <ul>
+    <p v-if="!products">No jokes in data!</p>
+    <ul class="styled--list">
       <ProductListItem v-for="p in products" :key="p.id" :products="p"></ProductListItem>
     </ul>
   </div>
@@ -25,4 +25,7 @@ export default {
 </script>
 
 <style scoped>
+.styled--list {
+  padding: 0;
+}
 </style>
