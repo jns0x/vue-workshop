@@ -60,7 +60,7 @@ export default {
       }
 
       payload.value.sort(compare);
-      console.log(payload);
+      // console.log(payload);
       this.$store.dispatch("orderByName", payload);
     }
   }
