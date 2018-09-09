@@ -34,7 +34,7 @@ export default new Vuex.Store({
     },
     async getProducts({ commit }) {
       const payload = await axios
-        .get("http://api.icndb.com/jokes/random/10")
+        .get("https://api.icndb.com/jokes/random/10")
         .then(res => res.data);
       commit({
         type: "setProducts",
