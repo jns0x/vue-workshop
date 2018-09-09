@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       sharedState: store.state,
-      heading: "Some Huck Norris jokes"
+      heading: "Some Chuck Norris jokes"
     };
   },
 

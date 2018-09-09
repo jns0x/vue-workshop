@@ -1,4 +1,6 @@
-# chuck-jokes
+# chuck-jokes-vue
+
+# https://chuck-jokes-vue.netlify.com/
 
 ## Project setup
 
@@ -23,5 +25,3 @@ yarn run build
 ```
 yarn run lint
 ```
-
-### https://optimistic-sammet-c67816.netlify.com/
